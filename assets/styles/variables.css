@@ -1,3 +1,9 @@
 :root {
-    
+    --light-color: #F6F6F6;
+    --dark-color: #222222;
+    --dark-opacity-color: #22222240;
+    --accent-1-color: #73C0FF;
+    --accent-2-color: #7474FF;
+    --main-border-radius: 30px;
+    --acctent-font-weight: bold;
 }

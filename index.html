@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="" type="image/x-icon">
-    <title></title>
+    <link rel="shortcut icon" href="./assets/icons/tab-ico.png" type="image/x-icon">
+    <title>FairWeather</title>
     <link rel="stylesheet" href="./assets/styles/normalize.css">
     <link rel="stylesheet" href="./assets/styles/font.css">
     <link rel="stylesheet" href="./assets/styles/variables.css">
@@ -15,6 +15,57 @@
     <script src="./assets/scripts/renderAPI.js" defer></script>
 </head>
 <body>
-    
+    <div class="wrapper-of-container">
+        <div class="container">
+            <header class="header">
+                <div class="header-container">
+                    <div class="div-search-location">
+                        <div class="search-location">
+                            <input type="text" class="input-search-location">
+                        </div>
+                        <div class="hints-for-location"></div>
+                    </div>
+                    <div class="div-toggle-c-or-f">
+                        <button class="toggle-c-or-f" type="button"><span class="°C">°C</span><span class="°F">°F</span></button>
+                    </div>
+                    <div class="div-logo"><h1>FairWeather</h1></div>
+                </div>
+            </header>
+            <main class="main">
+                <section class="main-weather">
+                    <div class="main-weather-wrapper">
+                        <h2 class="main-weather-today">Погода на сегодня</h2>
+                        <h3 class="main-current-location"></h3>
+                        <h4 class="main-current-weather-decs"></h4>
+                        <h5 class="main-current-weather-deg"></h5>
+                        <h6 class="main-current-weather-fel-deg">Чувствуется как: <span class="main-current-weather-fel-deg-id"></span></h6>
+                    </div>
+                </section>
+                <hr>
+                <section class="extra-weather">
+                    <div class="extra-weather-wrapper">
+                        <div class="extra-weather-main-decs">
+                            <p class="extra-current-humidity">Влажность: <span class="extra-current-humidity-id"></span></p>
+                            <p class="extra-current-spd-wnd">Скорость ветра: <span class="extra-current-spd-wnd-id"></span></p>
+                            <p class="extra-current-drct-wnd">Направление ветра: <span class="extra-current-drct-wnd-id"></span></p>
+                        </div>
+                        <div class="extra-weather-extra-decs">
+                            <p class="sunrice-and-sunset">🌄 Восход: <span class="sunrice-id"></span> | Закат: <span class="sunset-id"></span> 🌇</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <aside class="aside">
+                <section class="future-weather">
+                    <div class="future-weather-wrapper">
+                        <div class="next-days">
+                            <h2 class="title-next-days">Погода на дни:</h2>
+                            <div class="list-next-days"></div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
 </body>
 </html>
