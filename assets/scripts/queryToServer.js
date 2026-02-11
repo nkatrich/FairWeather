@@ -12,7 +12,7 @@ fetch(properURL).then(res => {
     }
     return res.json();
 }).then(data => {
-    console.log(data);
+    fixAPIDataToProperUI(data)
 }).catch(err => {
     console.error(err);
 })

@@ -4,6 +4,9 @@
     --dark-opacity-color: #22222240;
     --accent-1-color: #73C0FF;
     --accent-2-color: #7474FF;
+    --accent-3-color: #6F6F6F;
     --main-border-radius: 30px;
-    --acctent-font-weight: bold;
+    --accent-font-weight: bold;
+    --main-padding: 30px;
+    --els-padding: 10px;
 }
