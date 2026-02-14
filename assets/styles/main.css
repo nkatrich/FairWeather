@@ -5,6 +5,7 @@ body {
 .bg-imgs {
     display: flex;
     position: fixed;
+    inset: 0;
     z-index: 2;
 }
 
@@ -12,6 +13,7 @@ body {
     height: 100vh;
     width: 100vw;
     object-fit: cover;
+    position: absolute;
 }
 
 .wrapper-of-container {
@@ -25,11 +27,12 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 900px 300px;
-    grid-template-rows: 100px 550px;
-    grid-template-areas: "header aside"
-                         "main aside";
-    gap: 30px;
+    grid-template-columns: 300px;
+    grid-template-rows: minmax(100px, auto) auto auto;
+    grid-template-areas: "header"
+                         "main"
+                         "aside";
+    gap: 15px;
 }
 
 .header, .main, .aside {
@@ -46,8 +49,9 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: var(--main-padding);
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding: var(--els-padding);
 }
 
 .div-search-location {
@@ -73,7 +77,7 @@ body {
 
 .input-search-location {
     height: 50px;
-    width: 300px;
+    width: 290px;
     background-color: var(--dark-color);
     color: var(--light-color);
     border-radius: var(--main-border-radius);
@@ -110,21 +114,30 @@ body {
     content: "";
     position: absolute;
     top: 50%;
-    left: 30%;
+    left: 0;
     width: 40px;
     height: 40px;
-    transform: translate(-50%, -50%);
+    transform: translate(5px, -50%);
     background-color: var(--light-color);
     border-radius: 50%;
     z-index: -1;
+    transition: transform var(--main-transition);
 }
 
-.°C {
-
+.toggle-c-or-f.f::before {
+    transform: translate(calc(100% + 5px), -50%);
 }
 
-.°F {
+.toggle-c-or-f.f .°C {
+    color: var(--light-color);
+}
 
+.toggle-c-or-f .°F {
+    color: var(--light-color);
+}
+
+.toggle-c-or-f.f .°F {
+    color: var(--dark-color);
 }
 
 .div-logo {
@@ -190,6 +203,13 @@ body {
 
 .main-current-weather-decs {
     font-size: clamp(32px, 2.2vw, 56px);
+    text-align: center;
+}
+
+.main-current-weather-decs::first-letter {
+    background: linear-gradient(90deg, var(--accent-2-color), var(--accent-1-color));
+    border-radius: var(--main-border-radius);
+    font-size: clamp(36px, 2.7vw, 64px);
 }
 
 .main-current-weather-deg {
@@ -253,10 +273,99 @@ hr {
 
 .future-weather {
     width: 100%;
-    padding: var(--main-padding);
+    padding: var(--els-padding);
 }
 
-.future-weather-wrapper {
+.title-next-days {
+    margin-bottom: 10px;
+}
+
+.next-days {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.list-next-days {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.next-day {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    border-radius: var(--main-border-radius);
+    padding: var(--els-padding);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.next-day::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(100% + 5px);
+    height: calc(100% + 5px);
+    background: linear-gradient(90deg, var(--accent-2-color), var(--accent-1-color));
+    transform: translate(-50%, -50%);
+    border-radius: var(--main-border-radius);
+    z-index: -1;
+}
+
+.icon-next-day {
+    font-size: 28px;
+}
+
+.bg-loading {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: brightness(0.1);
+    z-index: 3;
+}
+
+.bg-loading.active {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.state-loading-text {
+    color: var(--light-color);
+    font-size: clamp(32px, 2.6vw, 64px);
+    font-weight: bold;
+    animation: show-load 0.4s ease 1 0.15s forwards;
+}
+
+@keyframes show-load {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+@media (min-width: 768px) {
+
+}
+
+
+@media (min-width: 1260px) {
+    .container {
+        grid-template-columns: 900px 300px;
+        grid-template-rows: 100px 500px;
+        grid-template-areas: "header aside"
+                            "main aside";
+        gap: 30px;
+    }
+
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }

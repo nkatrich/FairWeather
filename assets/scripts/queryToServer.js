@@ -2,21 +2,75 @@ const APIKey = '3d8e7f9f1caac1280ad2e13b68cc7d70';
 
 const baseURLWeather = 'https://api.openweathermap.org/data/2.5/weather';
 const baseURLForecast = 'https://api.openweathermap.org/data/2.5/forecast';
-const baseURLGeo = 'https://api.openweathermap.org/geo/1.0/direct';
 
-let properURL = buildWeatherURL('казань');
+let units = "metric";
+let unitsState = true;
 
-fetch(properURL).then(res => {
-    if (!res.ok) {
-        throw new Error('Something wrong');
-    }
-    return res.json();
-}).then(data => {
-    fixAPIDataToProperUI(data)
-}).catch(err => {
-    console.error(err);
-})
+// load state
+const bgLoading = document.querySelector('.bg-loading');
 
-function buildWeatherURL(city) {
-    return `${baseURLWeather}?q=${city}&units=metric&lang=ru&appid=${APIKey}`;
+async function getCurrentWeather(city, units) {
+    const res = await fetch(`${baseURLWeather}?q=${city}&units=${units}&lang=ru&appid=${APIKey}`);
+    return await res.json();
 }
+
+async function getForecast(city, units) {
+    const res = await fetch(`${baseURLForecast}?q=${city}&units=${units}&lang=ru&appid=${APIKey}`);
+    return await res.json();
+}
+
+async function loadWeather(city, units) {
+    try {
+        bgLoading.classList.add('active');
+        const [weather, forecast] = await Promise.all([
+        getCurrentWeather(city, units),
+        getForecast(city, units)
+        ])
+
+        bgLoading.classList.remove('active');
+        const data = fixAPIDataToProperUI(weather, forecast, units);
+        renderData(data)
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
+function debounce(fn, delay) {
+    let timer;
+
+    return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+        fn.apply(this, args);
+        }, delay);
+    }
+}
+
+const inputSearchLocation = document.querySelector('.input-search-location');
+let inputValue = inputSearchLocation.value;
+
+inputSearchLocation.addEventListener("input", debounce(e => {
+    const value = e.target.value.trim();
+    if (value) {
+        loadWeather(value, units);
+    }
+}, 500));
+
+loadWeather('Казань', units)
+
+const toggleCOrF = document.querySelector('.toggle-c-or-f');
+
+toggleCOrF.addEventListener('click', () => {
+    if (unitsState) {
+        units = "imperial";
+        loadWeather(inputValue, units);
+        toggleCOrF.classList.add('f');
+    }
+    else {
+        units = "metric";
+        loadWeather(inputValue, units);
+        toggleCOrF.classList.remove('f');
+    }
+    unitsState = !unitsState;
+})

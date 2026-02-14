@@ -9,4 +9,5 @@
     --accent-font-weight: bold;
     --main-padding: 30px;
     --els-padding: 10px;
+    --main-transition: 0.4s ease;
 }
