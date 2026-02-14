@@ -69,6 +69,7 @@ body {
                          "main"
                          "aside";
     gap: 15px;
+    padding: var(--els-padding);
 }
 
 .header, .main, .aside {
@@ -88,10 +89,6 @@ body {
     flex-direction: column-reverse;
     gap: 10px;
     padding: var(--els-padding);
-}
-
-.div-search-location {
-
 }
 
 .search-location {
@@ -125,14 +122,6 @@ body {
 .input-search-location::placeholder {
     font-weight: var(--accent-font-weight);
     color: var(--light-color);
-}
-
-.hints-for-location {
-
-}
-
-.div-toggle-c-or-f {
-    
 }
 
 .toggle-c-or-f {
@@ -262,10 +251,6 @@ hr {
     border: 2px solid var(--dark-color);
 }
 
-.extra-weather {
-
-}
-
 .extra-weather-wrapper {
     width: 100%;
     padding: var(--els-padding);
@@ -389,7 +374,7 @@ hr {
         transform: scale(1);
     }
     to {
-        transform: scale(1.2);
+        transform: scale(1.3);
     }
 }
 
