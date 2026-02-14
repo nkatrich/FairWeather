@@ -48,10 +48,10 @@ function debounce(fn, delay) {
 }
 
 const inputSearchLocation = document.querySelector('.input-search-location');
-let inputValue = inputSearchLocation.value;
+let value = inputSearchLocation.value;
 
 inputSearchLocation.addEventListener("input", debounce(e => {
-    const value = e.target.value.trim();
+    value = e.target.value.trim();
     if (value) {
         loadWeather(value, units);
     }
@@ -64,12 +64,12 @@ const toggleCOrF = document.querySelector('.toggle-c-or-f');
 toggleCOrF.addEventListener('click', () => {
     if (unitsState) {
         units = "imperial";
-        loadWeather(inputValue, units);
+        loadWeather(value, units);
         toggleCOrF.classList.add('f');
     }
     else {
         units = "metric";
-        loadWeather(inputValue, units);
+        loadWeather(value, units);
         toggleCOrF.classList.remove('f');
     }
     unitsState = !unitsState;
