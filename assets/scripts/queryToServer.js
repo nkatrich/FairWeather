@@ -61,7 +61,7 @@ inputSearchLocation.addEventListener("input", debounce(e => {
     if (value) {
         loadWeather(value, units);
     }
-}, 500));
+}, 600));
 
 loadWeather('Казань', units)
 
