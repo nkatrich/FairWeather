@@ -9,6 +9,9 @@ let unitsState = true;
 // load state
 const bgLoading = document.querySelector('.bg-loading');
 
+// msg if wrong query
+const messageNotFound = document.querySelector('.message-not-found');
+
 async function getCurrentWeather(city, units) {
     const res = await fetch(`${baseURLWeather}?q=${city}&units=${units}&lang=ru&appid=${APIKey}`);
     return await res.json();
@@ -29,10 +32,13 @@ async function loadWeather(city, units) {
 
         bgLoading.classList.remove('active');
         const data = fixAPIDataToProperUI(weather, forecast, units);
-        renderData(data)
+        renderData(data);
     }
     catch (err) {
-        console.error(err)
+        messageNotFound.classList.add('show');
+        setTimeout(() => {
+            messageNotFound.classList.remove('show');
+        }, 5000);
     }
 }
 

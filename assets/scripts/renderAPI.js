@@ -12,7 +12,9 @@ const listNextDays = document.querySelector('.list-next-days');
 
 function fixAPIDataToProperUI(data, data2, units) {
     // code for proper UI from API data
+    console.log(data, data2)
 
+    
     // round number
     const currentDeg = Math.round(data.main.temp);
     const currentFelDeg = Math.round(data.main.feels_like);
