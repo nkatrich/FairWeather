@@ -12,8 +12,6 @@ const listNextDays = document.querySelector('.list-next-days');
 
 function fixAPIDataToProperUI(data, data2, units) {
     // code for proper UI from API data
-    console.log(data, data2)
-
     
     // round number
     const currentDeg = Math.round(data.main.temp);
@@ -22,7 +20,6 @@ function fixAPIDataToProperUI(data, data2, units) {
 
     // define emoji by weather and make first letter high register
     const idOfDecsWeather = data.weather[0].id;
-    // const odOfDecsForecast = dat
     let decsWeather = data.weather[0].description;
     let emojiForWeather;
 
